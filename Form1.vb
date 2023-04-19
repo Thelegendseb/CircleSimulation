@@ -1,4 +1,4 @@
-﻿Public Class Form1
+Public Class Form1
     Dim WithEvents Time As New Timer
     Dim g As BufferedGraphics
     Dim b As BufferedGraphicsContext
@@ -7,18 +7,18 @@
         Me.b = BufferedGraphicsManager.Current
         Me.g = Me.b.Allocate(Me.CreateGraphics, Me.DisplayRectangle)
         Init()
-        Time.Interval = Int(1000 / 60)
+        Time.Interval = Int(1000 / 200)
         Time.Start()
     End Sub
     Private Sub Time_Tick(sender As Object, e As EventArgs) Handles Time.Tick
         Calculations()
         Drawings()
     End Sub
-    Private Sub Mouse_Down(sender As Object, e As MouseEventArgs) Handles MyBase.MouseMove
+    Private Sub Mouse_Down(sender As Object, e As MouseEventArgs) Handles MyBase.MouseDown
         balls.Add(GetRandomBall(e.X, e.Y))
     End Sub
 
-    Public numBalls As Double = 20 'lower means more compressed
+    Public numBalls As Double = 10 'lower means more compressed
     Public gravity As Double = 0.3
     Public friction As Double = -0.9
     Public AirResistance As Double = 0.99
